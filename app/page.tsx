@@ -7,6 +7,23 @@ const trackCount = tracks.length - setsCount;
 const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
   soundCloudProfile.url,
 )}&color=%23c7ff37&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true`;
+const officialLinks = [
+  {
+    title: "Instagram",
+    label: "@koiboi_edit_",
+    url: "https://www.instagram.com/koiboi_edit_/?hl=en",
+  },
+  {
+    title: "Studio AI",
+    label: "KOIBOI Studio site",
+    url: "https://koiboi-studio.github.io/studio-ai-landing/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+  },
+  {
+    title: "SoundCloud",
+    label: "Official music catalog",
+    url: soundCloudProfile.url,
+  },
+];
 
 export default function Home() {
   return (
@@ -42,8 +59,8 @@ export default function Home() {
             <a className="button button--primary" href="#player">
               Listen Now
             </a>
-            <a className="button button--ghost" href={soundCloudProfile.url}>
-              SoundCloud
+            <a className="button button--ghost" href="#links">
+              Links
             </a>
           </div>
         </div>
@@ -91,6 +108,19 @@ export default function Home() {
                 Play
               </a>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel links-panel" id="links" aria-labelledby="links-title">
+        <p className="section-kicker">Official Links</p>
+        <h2 id="links-title">Instagram, website and music in one place.</h2>
+        <div className="link-grid">
+          {officialLinks.map((link) => (
+            <a className="link-card" href={link.url} key={link.url}>
+              <span>{link.title}</span>
+              <strong>{link.label}</strong>
+            </a>
           ))}
         </div>
       </section>
