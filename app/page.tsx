@@ -1,5 +1,3 @@
-import { ThreeBackdrop } from "./ThreeBackdrop";
-import { TiltWindows } from "./TiltWindows";
 import { soundCloudProfile, tracks } from "./tracks";
 
 const featured = tracks.slice(0, 6);
@@ -56,9 +54,6 @@ const officialLinks = [
 export default function Home() {
   return (
     <main className="site-shell">
-      <ThreeBackdrop />
-      <TiltWindows />
-
       <section className="hero" id="top" aria-labelledby="hero-title">
         <nav className="topbar" aria-label="Primary">
           <a className="brand" href="#top" aria-label="KOIBOI MUSIC home">
@@ -74,7 +69,7 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="hero__copy motion-window" data-tilt-window>
+        <div className="hero__copy">
           <p className="eyebrow"><span>01</span> Official Artist Hub</p>
           <h1 id="hero-title"><span>KOI</span><span>BOI</span><i>MUSIC</i></h1>
           <p className="lead">
@@ -96,8 +91,6 @@ export default function Home() {
         </div>
 
         <div className="portrait-scene" aria-hidden="true">
-          <span className="orbit orbit--one" />
-          <span className="orbit orbit--two" />
           <span className="portrait-label portrait-label--top">PSY / LIVE / STUDIO</span>
           <img className="portrait" src="/koi-boi-portrait.jpg" alt="" />
           <span className="portrait-label portrait-label--bottom">KOIBOI // 230769</span>
@@ -118,7 +111,7 @@ export default function Home() {
           <p className="section-kicker">02 / Transmission</p>
           <h2 id="player-title">Listen inside<br />the signal.</h2>
         </div>
-        <div className="player-deck motion-window" data-tilt-window>
+        <div className="player-deck">
           <div className="deck-bar"><span>SC / KOI-BOI</span><i>LIVE STREAM</i></div>
           <iframe
             title="KOIBOI SoundCloud player"
@@ -161,7 +154,7 @@ export default function Home() {
         <h2 id="links-title">Enter the<br />KOIBOI universe.</h2>
         <div className="link-grid">
           {officialLinks.map((link, index) => (
-            <a className={`link-card link-card--${link.tone} motion-window`} data-tilt-window href={link.url} key={link.url}>
+            <a className={`link-card link-card--${link.tone}`} href={link.url} key={link.url}>
               <small>{String(index + 1).padStart(2, "0")}</small>
               <span>{link.title}</span>
               <strong>{link.label}</strong>
@@ -171,7 +164,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="booking motion-window" data-tilt-window id="book" aria-labelledby="book-title">
+      <section className="booking" id="book" aria-labelledby="book-title">
         <p className="section-kicker">05 / Direct channel</p>
         <h2 id="book-title">Bring the<br />signal live.</h2>
         <p className="booking-note">Bookings, collaborations, remixes and sound design.</p>

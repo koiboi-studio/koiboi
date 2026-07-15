@@ -26,6 +26,7 @@ test("renders the complete KOIBOI artist hub", async () => {
   assert.match(html, /soundcloud\.com\/koi-boi/);
   assert.match(html, /beatport\.com\/artist\/koi-boi\/230769/);
   assert.match(html, /music\.apple\.com\/us\/artist\/koi-boi\/484391276/);
+  assert.doesNotMatch(html, /three-backdrop|data-tilt-window|<canvas/i);
 
   const trackArticles = html.match(/class="track"/g) ?? [];
   assert.equal(trackArticles.length, 78);
