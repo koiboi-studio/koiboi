@@ -1,4 +1,5 @@
 import { ThreeBackdrop } from "./ThreeBackdrop";
+import { TiltWindows } from "./TiltWindows";
 import { soundCloudProfile, tracks } from "./tracks";
 
 const featured = tracks.slice(0, 6);
@@ -50,6 +51,7 @@ export default function Home() {
   return (
     <main className="site-shell">
       <ThreeBackdrop />
+      <TiltWindows />
 
       <section className="hero" aria-labelledby="hero-title">
         <nav className="topbar" aria-label="Primary">
@@ -87,7 +89,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="portrait-wrap" aria-hidden="true">
+        <div className="portrait-wrap motion-window" data-tilt-window aria-hidden="true">
           <img className="portrait" src="/koi-boi-portrait.jpg" alt="" />
         </div>
       </section>
@@ -100,7 +102,7 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="panel player-panel" id="player" aria-labelledby="player-title">
+      <section className="panel player-panel motion-window" data-tilt-window id="player" aria-labelledby="player-title">
         <p className="section-kicker">Full Player</p>
         <h2 id="player-title">{soundCloudProfile.title}</h2>
         <iframe
@@ -143,7 +145,7 @@ export default function Home() {
         <h2 id="links-title">All platforms, booking and artist channels.</h2>
         <div className="link-grid">
           {officialLinks.map((link) => (
-            <a className={`link-card link-card--${link.tone}`} href={link.url} key={link.url}>
+            <a className={`link-card link-card--${link.tone} motion-window`} data-tilt-window href={link.url} key={link.url}>
               <span>{link.title}</span>
               <strong>{link.label}</strong>
             </a>
@@ -151,7 +153,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="booking" id="book" aria-labelledby="book-title">
+      <section className="booking motion-window" data-tilt-window id="book" aria-labelledby="book-title">
         <p className="section-kicker">Booking / Collabs</p>
         <h2 id="book-title">For live sets, releases, remixes and sound design.</h2>
         <p className="booking-mail">koi.boibooking@gmail.com</p>
