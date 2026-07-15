@@ -13,21 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KOIBOI MUSIC",
+  title: "KOIBOI MUSIC | Official SoundCloud",
   description:
-    "Mobile-first landing page for KOIBOI MUSIC live sets, releases, and sound design.",
+    "Official KOIBOI MUSIC landing page with SoundCloud player, full music catalog, releases, live sets, and remixes.",
   openGraph: {
-    title: "KOIBOI MUSIC",
+    title: "KOIBOI MUSIC | Official SoundCloud",
     description:
-      "Bass-forward music with liquid motion. Live sets, releases, and sound design.",
-    images: ["/og.png"],
+      "Listen to the full Koi Boi SoundCloud catalog: tracks, sets, remixes, and releases.",
+    images: ["/og.jpg"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "KOIBOI MUSIC",
+    title: "KOIBOI MUSIC | Official SoundCloud",
     description:
-      "Bass-forward music with liquid motion. Live sets, releases, and sound design.",
-    images: ["/og.png"],
+      "Listen to the full Koi Boi SoundCloud catalog: tracks, sets, remixes, and releases.",
+    images: ["/og.jpg"],
   },
   icons: {
     icon: "/favicon.svg",
