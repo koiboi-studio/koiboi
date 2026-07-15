@@ -40,6 +40,12 @@ const officialLinks = [
     tone: "social",
   },
   {
+    title: "Facebook",
+    label: "Official artist page",
+    url: "https://www.facebook.com/profile.php?id=61577651219891",
+    tone: "facebook",
+  },
+  {
     title: "Studio AI",
     label: "KOIBOI Studio site",
     url: "https://koiboi-studio.github.io/studio-ai-landing/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
@@ -53,7 +59,7 @@ export default function Home() {
       <ThreeBackdrop />
       <TiltWindows />
 
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" id="top" aria-labelledby="hero-title">
         <nav className="topbar" aria-label="Primary">
           <a className="brand" href="#top" aria-label="KOIBOI MUSIC home">
             KOIBOI
@@ -68,9 +74,9 @@ export default function Home() {
           </div>
         </nav>
 
-        <div className="hero__copy">
-          <p className="eyebrow">Official Artist Hub</p>
-          <h1 id="hero-title">KOIBOI MUSIC</h1>
+        <div className="hero__copy motion-window" data-tilt-window>
+          <p className="eyebrow"><span>01</span> Official Artist Hub</p>
+          <h1 id="hero-title"><span>KOI</span><span>BOI</span><i>MUSIC</i></h1>
           <p className="lead">
             Psytrance releases, live sets, remixes, bookings and official platform links in one clean place.
           </p>
@@ -89,12 +95,17 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="portrait-wrap motion-window" data-tilt-window aria-hidden="true">
+        <div className="portrait-scene" aria-hidden="true">
+          <span className="orbit orbit--one" />
+          <span className="orbit orbit--two" />
+          <span className="portrait-label portrait-label--top">PSY / LIVE / STUDIO</span>
           <img className="portrait" src="/koi-boi-portrait.jpg" alt="" />
+          <span className="portrait-label portrait-label--bottom">KOIBOI // 230769</span>
         </div>
       </section>
 
       <section className="ticker" aria-label="Featured music">
+        <span className="ticker__label">Latest signal</span>
         {featured.map((track) => (
           <a key={track.url} href={track.url}>
             {track.title}
@@ -102,25 +113,30 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="panel player-panel motion-window" data-tilt-window id="player" aria-labelledby="player-title">
-        <p className="section-kicker">Full Player</p>
-        <h2 id="player-title">{soundCloudProfile.title}</h2>
-        <iframe
-          title="KOIBOI SoundCloud player"
-          className="soundcloud-player"
-          allow="autoplay"
-          src={playerUrl}
-        />
-        <a className="button button--primary button--wide" href={soundCloudProfile.url}>
-          Open Full Profile
-        </a>
+      <section className="player-stage" id="player" aria-labelledby="player-title">
+        <div className="stage-heading">
+          <p className="section-kicker">02 / Transmission</p>
+          <h2 id="player-title">Listen inside<br />the signal.</h2>
+        </div>
+        <div className="player-deck motion-window" data-tilt-window>
+          <div className="deck-bar"><span>SC / KOI-BOI</span><i>LIVE STREAM</i></div>
+          <iframe
+            title="KOIBOI SoundCloud player"
+            className="soundcloud-player"
+            allow="autoplay"
+            src={playerUrl}
+          />
+          <a className="button button--primary button--wide" href={soundCloudProfile.url}>
+            Open Full Profile <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </section>
 
-      <section className="panel" aria-labelledby="catalog-title">
+      <section className="catalog-stage" aria-labelledby="catalog-title">
         <div className="section-row">
           <div>
-            <p className="section-kicker">Catalog</p>
-            <h2 id="catalog-title">All music from SoundCloud</h2>
+            <p className="section-kicker">03 / Archive</p>
+            <h2 id="catalog-title">All music.<br />One frequency.</h2>
           </div>
           <span className="count-badge">{tracks.length}</span>
         </div>
@@ -140,27 +156,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="panel links-panel" id="links" aria-labelledby="links-title">
-        <p className="section-kicker">Official Links</p>
-        <h2 id="links-title">All platforms, booking and artist channels.</h2>
+      <section className="links-stage" id="links" aria-labelledby="links-title">
+        <p className="section-kicker">04 / Network</p>
+        <h2 id="links-title">Enter the<br />KOIBOI universe.</h2>
         <div className="link-grid">
-          {officialLinks.map((link) => (
+          {officialLinks.map((link, index) => (
             <a className={`link-card link-card--${link.tone} motion-window`} data-tilt-window href={link.url} key={link.url}>
+              <small>{String(index + 1).padStart(2, "0")}</small>
               <span>{link.title}</span>
               <strong>{link.label}</strong>
+              <b aria-hidden="true">↗</b>
             </a>
           ))}
         </div>
       </section>
 
       <section className="booking motion-window" data-tilt-window id="book" aria-labelledby="book-title">
-        <p className="section-kicker">Booking / Collabs</p>
-        <h2 id="book-title">For live sets, releases, remixes and sound design.</h2>
+        <p className="section-kicker">05 / Direct channel</p>
+        <h2 id="book-title">Bring the<br />signal live.</h2>
+        <p className="booking-note">Bookings, collaborations, remixes and sound design.</p>
         <p className="booking-mail">koi.boibooking@gmail.com</p>
         <a className="button button--primary button--wide" href="mailto:koi.boibooking@gmail.com">
-          Send Booking Request
+          Send Booking Request <span aria-hidden="true">↗</span>
         </a>
       </section>
+
+      <footer><span>KOIBOI MUSIC</span><span>© 2026 / ALL SYSTEMS LIVE</span></footer>
     </main>
   );
 }

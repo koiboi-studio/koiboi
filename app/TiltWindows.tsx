@@ -26,10 +26,10 @@ export function TiltWindows() {
       const nodes = Array.from(document.querySelectorAll<TiltNode>("[data-tilt-window]"));
 
       VanillaTilt.init(nodes, {
-        max: 5,
-        speed: 450,
-        scale: 1.015,
-        perspective: 1200,
+        max: 7,
+        speed: 620,
+        scale: 1.018,
+        perspective: 1500,
         glare: true,
         "max-glare": 0.12,
         gyroscope: true,
