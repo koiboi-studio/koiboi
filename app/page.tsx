@@ -91,9 +91,7 @@ export default function Home() {
         </div>
 
         <div className="portrait-scene" aria-hidden="true">
-          <span className="portrait-label portrait-label--top">PSY / LIVE / STUDIO</span>
           <img className="portrait" src="/koi-boi-portrait.jpg" alt="" />
-          <span className="portrait-label portrait-label--bottom">KOIBOI // 230769</span>
         </div>
       </section>
 

@@ -22,15 +22,15 @@
 * { box-sizing: border-box; }
 
 html {
-  background: #000;
-  scroll-behavior: smooth;
+  background: var(--black);
+  scroll-behavior: auto;
   scroll-padding-top: 68px;
 }
 
 body {
   min-height: 100vh;
   margin: 0;
-  background: #000;
+  background: var(--black);
   color: var(--paper);
   font-family: var(--font-geist-sans), Arial, sans-serif;
 }
@@ -43,7 +43,6 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   overflow: hidden;
   background: var(--black);
-  border-inline: 1px solid #171917;
 }
 
 .hero {
@@ -103,13 +102,10 @@ a { color: inherit; text-decoration: none; }
 
 .portrait-scene {
   position: relative;
-  width: 100%;
+  width: calc(100% + 32px);
   height: clamp(340px, 53svh, 500px);
-  margin-top: 14px;
+  margin: 0 -16px;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #090a09;
 }
 
 .portrait {
@@ -117,22 +113,9 @@ a { color: inherit; text-decoration: none; }
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center 10%;
+  object-position: 50% 8%;
   filter: saturate(.92) contrast(1.05);
 }
-
-.portrait-label {
-  position: absolute;
-  z-index: 2;
-  padding: 7px 9px;
-  border-radius: 3px;
-  background: var(--paper);
-  color: #050605;
-  font: 700 9px/1 var(--font-geist-mono), monospace;
-}
-
-.portrait-label--top { top: 10px; right: 10px; }
-.portrait-label--bottom { bottom: 10px; left: 10px; background: var(--cyan); }
 
 .hero__copy { padding-top: 24px; }
 
@@ -378,26 +361,19 @@ footer {
   .hero, .player-stage, .catalog-stage, .links-stage { padding-inline: 12px; }
   .topbar { margin-inline: -12px; padding-inline: 12px; }
   .pill { padding-inline: 11px; }
-  .portrait-scene { height: 330px; }
+  .portrait-scene { width: calc(100% + 24px); height: 330px; margin-inline: -12px; }
   h1 { font-size: 52px; }
   .soundcloud-player { height: 390px; }
   .booking { margin-inline: 12px; }
 }
 
 @media (min-width: 621px) {
-  body { padding-block: 24px; }
-  .site-shell { border: 1px solid var(--line); border-radius: 8px; }
   .hero { padding-inline: 24px; }
   .topbar { margin-inline: -24px; padding-inline: 24px; }
+  .portrait-scene { width: calc(100% + 48px); margin-inline: -24px; }
   .player-stage, .catalog-stage, .links-stage { padding-inline: 24px; }
   .booking { margin-inline: 24px; }
   footer { padding-inline: 24px; }
-}
-
-@media (hover: hover) {
-  .button, .pill, .track__play, .link-card { transition: border-color 160ms ease, background 160ms ease; }
-  .button:hover, .pill:hover, .track__play:hover { filter: brightness(1.1); }
-  .link-card:hover { border-color: var(--lime); background: var(--panel-light); }
 }
 
 @media (prefers-reduced-motion: reduce) {
