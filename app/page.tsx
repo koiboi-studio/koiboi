@@ -9,19 +9,40 @@ const playerUrl = `https://w.soundcloud.com/player/?url=${encodeURIComponent(
 )}&color=%23c7ff37&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true`;
 const officialLinks = [
   {
-    title: "Instagram",
-    label: "@koiboi_edit_",
-    url: "https://www.instagram.com/koiboi_edit_/?hl=en",
+    title: "Booking",
+    label: "koi.boibooking@gmail.com",
+    url: "mailto:koi.boibooking@gmail.com",
+    tone: "primary",
   },
   {
-    title: "Studio AI",
-    label: "KOIBOI Studio site",
-    url: "https://koiboi-studio.github.io/studio-ai-landing/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+    title: "Beatport",
+    label: "Releases and DJ store",
+    url: "https://www.beatport.com/artist/koi-boi/230769/releases?page=1&per_page=25",
+    tone: "store",
+  },
+  {
+    title: "Apple Music",
+    label: "Stream Koi Boi",
+    url: "https://music.apple.com/us/artist/koi-boi/484391276",
+    tone: "stream",
   },
   {
     title: "SoundCloud",
     label: "Official music catalog",
     url: soundCloudProfile.url,
+    tone: "stream",
+  },
+  {
+    title: "Instagram",
+    label: "@koiboi_edit_",
+    url: "https://www.instagram.com/koiboi_edit_/?hl=en",
+    tone: "social",
+  },
+  {
+    title: "Studio AI",
+    label: "KOIBOI Studio site",
+    url: "https://koiboi-studio.github.io/studio-ai-landing/?utm_source=ig&utm_medium=social&utm_content=link_in_bio",
+    tone: "site",
   },
 ];
 
@@ -35,20 +56,21 @@ export default function Home() {
           <a className="brand" href="#top" aria-label="KOIBOI MUSIC home">
             KOIBOI
           </a>
-          <a className="pill" href="#player">
-            Play
-          </a>
+          <div className="nav-actions">
+            <a className="pill" href="#player">
+              Play
+            </a>
+            <a className="pill pill--accent" href="mailto:koi.boibooking@gmail.com">
+              Booking
+            </a>
+          </div>
         </nav>
 
-        <div className="portrait-wrap" aria-hidden="true">
-          <img className="portrait" src="/koi-boi-portrait.jpg" alt="" />
-        </div>
-
         <div className="hero__copy">
-          <p className="eyebrow">Official SoundCloud</p>
+          <p className="eyebrow">Official Artist Hub</p>
           <h1 id="hero-title">KOIBOI MUSIC</h1>
           <p className="lead">
-            Psytrance releases, live sets, remixes and label drops from the official Koi Boi catalog.
+            Psytrance releases, live sets, remixes, bookings and official platform links in one clean place.
           </p>
           <div className="stats" aria-label="SoundCloud catalog summary">
             <span>{soundCloudProfile.count} items</span>
@@ -63,6 +85,10 @@ export default function Home() {
               Links
             </a>
           </div>
+        </div>
+
+        <div className="portrait-wrap" aria-hidden="true">
+          <img className="portrait" src="/koi-boi-portrait.jpg" alt="" />
         </div>
       </section>
 
@@ -114,10 +140,10 @@ export default function Home() {
 
       <section className="panel links-panel" id="links" aria-labelledby="links-title">
         <p className="section-kicker">Official Links</p>
-        <h2 id="links-title">Instagram, website and music in one place.</h2>
+        <h2 id="links-title">All platforms, booking and artist channels.</h2>
         <div className="link-grid">
           {officialLinks.map((link) => (
-            <a className="link-card" href={link.url} key={link.url}>
+            <a className={`link-card link-card--${link.tone}`} href={link.url} key={link.url}>
               <span>{link.title}</span>
               <strong>{link.label}</strong>
             </a>
@@ -128,8 +154,9 @@ export default function Home() {
       <section className="booking" id="book" aria-labelledby="book-title">
         <p className="section-kicker">Booking / Collabs</p>
         <h2 id="book-title">For live sets, releases, remixes and sound design.</h2>
-        <a className="button button--primary button--wide" href="mailto:booking@koiboi.music">
-          Start a Project
+        <p className="booking-mail">koi.boibooking@gmail.com</p>
+        <a className="button button--primary button--wide" href="mailto:koi.boibooking@gmail.com">
+          Send Booking Request
         </a>
       </section>
     </main>
