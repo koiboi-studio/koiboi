@@ -218,6 +218,8 @@ h1 {
   letter-spacing: -.045em;
 }
 
+.hero__copy { perspective: 1200px; }
+h1 { transform-style: preserve-3d; }
 h1 span { display: block; }
 h1 span:nth-child(2) { margin-left: .09em; color: var(--lime); }
 
@@ -319,12 +321,35 @@ h2 {
 .button--ghost:hover { border-color: var(--paper); background: var(--paper); color: var(--black); }
 .button--wide { display: flex; width: 100%; flex: 1 1 100%; }
 
+.portrait-stage {
+  position: relative;
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+  transform-style: preserve-3d;
+}
+
 .portrait-scene {
   position: relative;
   overflow: hidden;
   border-radius: 4px;
   aspect-ratio: 4 / 5;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
+
+/* depth plate sitting behind the portrait in real 3D space
+   (it has to live on the stage: .portrait-scene clips it with overflow:hidden) */
+.portrait-stage::before {
+  position: absolute;
+  inset: -5% -4%;
+  z-index: 0;
+  content: "";
+  border: 1px solid rgba(201, 255, 61, .28);
+  border-radius: 6px;
+  transform: translateZ(-110px);
+}
+
+.portrait-scene { z-index: 1; }
 
 .portrait {
   width: 100%;
@@ -486,6 +511,7 @@ h2 {
 /* ---------- archive ---------- */
 
 .track-list {
+  perspective: 1200px;
   display: grid;
   gap: 0;
   margin-top: clamp(30px, 4vw, 50px);
@@ -494,6 +520,7 @@ h2 {
 
 .track {
   position: relative;
+  transform-origin: 50% 0;
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr) auto;
   grid-template-areas: "idx title play" "idx type play";
@@ -595,6 +622,7 @@ h2 {
 /* ---------- links ---------- */
 
 .link-grid {
+  perspective: 1600px;
   display: grid;
   gap: 10px;
   margin-top: clamp(34px, 5vw, 56px);
@@ -604,6 +632,7 @@ h2 {
 .link-card {
   position: relative;
   isolation: isolate;
+  transform-origin: 50% 100%;
   overflow: hidden;
   min-height: 168px;
   display: grid;
@@ -628,7 +657,11 @@ h2 {
   opacity: .9;
 }
 
-.link-card:hover { transform: translateY(-4px); border-color: var(--tone, var(--lime)); }
+.link-card:hover {
+  transform: translateY(-6px) rotateX(6deg) scale(1.015);
+  border-color: var(--tone, var(--lime));
+  box-shadow: 0 26px 50px -28px rgba(0, 0, 0, .9);
+}
 .link-card:hover::before { height: 100%; opacity: .1; }
 
 .link-card small {
@@ -733,6 +766,7 @@ footer {
 /* ---------- responsive ---------- */
 
 @media (max-width: 600px) {
+  .link-card:hover { transform: translateY(-4px); }
   .topbar { gap: 12px; }
   .brand { font-size: 13px; letter-spacing: .12em; }
   .brand i { display: none; }
@@ -765,14 +799,46 @@ footer {
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    .hero__copy > *,
     .stage__head > *,
     .player-deck,
-    .link-card,
     .booking > * {
       animation: rise both linear;
       animation-timeline: view();
       animation-range: entry 5% cover 26%;
+    }
+
+    /* cards tip up out of the page plane as they enter */
+    .link-card {
+      animation: tilt-in both linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    /* archive rows hinge down from their top edge */
+    .track {
+      animation: hinge both linear;
+      animation-timeline: view();
+      animation-range: entry 12% entry 92%;
+    }
+
+    /* the portrait rotates through the scroll like a slab turning to face you */
+    .portrait-scene {
+      animation: slab both linear;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+
+    /* KOI / BOI push apart in depth */
+    h1 span:first-child {
+      animation: depth-near both linear;
+      animation-timeline: view();
+      animation-range: entry 0% exit 60%;
+    }
+
+    h1 span:nth-child(2) {
+      animation: depth-far both linear;
+      animation-timeline: view();
+      animation-range: entry 0% exit 60%;
     }
   }
 }
@@ -780,6 +846,32 @@ footer {
 @keyframes rise {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: none; }
+}
+
+@keyframes tilt-in {
+  from { opacity: 0; transform: rotateX(-24deg) translateY(40px) translateZ(-60px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes hinge {
+  from { opacity: .12; transform: rotateX(-42deg) translateZ(-40px); }
+  30%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes slab {
+  from { transform: rotateY(14deg) rotateX(-5deg) translateZ(-70px); }
+  50% { transform: none; }
+  to { transform: rotateY(-9deg) rotateX(4deg) translateZ(-40px); }
+}
+
+@keyframes depth-near {
+  from { transform: translateZ(0); }
+  to { transform: translateZ(90px) translateY(-10px); }
+}
+
+@keyframes depth-far {
+  from { transform: translateZ(0); }
+  to { transform: translateZ(-70px) translateY(6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

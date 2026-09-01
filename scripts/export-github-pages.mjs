@@ -20,7 +20,9 @@ let html = await response.text();
 html = html
   .replace(/<script\b[\s\S]*?<\/script>/gi, "")
   .replace(/<link\b[^>]*rel=["']modulepreload["'][^>]*>/gi, "")
-  .replace(/(href|src|content)=(['"])\/(?!\/)/g, `$1=$2${basePath}/`);
+  .replace(/(href|src|content)=(['"])\/(?!\/)/g, `$1=$2${basePath}/`)
+  // inline <style> blocks (the font faces) carry url(/assets/...) that the attribute rule above misses
+  .replace(/url\(\/(?!\/)/g, `url(${basePath}/`);
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });

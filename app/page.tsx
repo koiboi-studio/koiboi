@@ -144,13 +144,15 @@ export default function Home() {
           </div>
         </div>
 
-        <figure className="portrait-scene">
+        <div className="portrait-stage">
+          <figure className="portrait-scene">
           <img className="portrait" src="/koi-boi-portrait.jpg" alt="Koi Boi" />
           <figcaption>
             <span>KOI BOI</span>
             <i>O00010O</i>
           </figcaption>
-        </figure>
+          </figure>
+        </div>
       </section>
 
       <div className="ticker" aria-label="Featured music">
